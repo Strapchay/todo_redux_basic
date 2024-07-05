@@ -4,7 +4,6 @@ import { getCompletedTaskCount, getDateValue } from "./helpers";
 
 function Landing() {
   const tasks = useSelector((state) => state.tasks.tasks);
-  console.log("the tasks val", tasks);
 
   const incompleteTasks =
     tasks.filter((task) => getCompletedTaskCount(task) < task.items.length) ??

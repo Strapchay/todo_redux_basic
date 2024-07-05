@@ -1,12 +1,31 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Actions from "./Actions";
-import Header from "./Header";
+import Error from "./Error";
+import BasePage from "./BasePage";
 import Landing from "./Landing";
-import Sidebar from "./Sidebar";
+import TrashItems from "./TrashItems";
+import PageNotFound from "./PageNotFound";
+
+const router = createBrowserRouter([
+  {
+    element: <BasePage />,
+    errorElement: <Error />,
+    children: [
+      { path: "/dashboard", element: <Landing />, index: true },
+      { path: "/trashItems", element: <TrashItems /> },
+    ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
+    errorElement: <Error />,
+  },
+]);
 
 function App() {
   return (
-    <main className="grid grid-cols-[9rem_1fr] h-[100vh]">
+    <>
+      <RouterProvider router={router} />
       <Toaster
         position="top-center"
         gutter={12}
@@ -27,13 +46,7 @@ function App() {
           },
         }}
       />
-      <Sidebar />
-      <div className="flex flex-col gap-10 h-[100vh] w-full py-6 px-8">
-        <Header />
-        <Actions />
-        <Landing />
-      </div>
-    </main>
+    </>
   );
 }
 

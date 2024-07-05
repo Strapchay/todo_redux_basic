@@ -2,9 +2,12 @@ import { FaEllipsisVertical } from "react-icons/fa6";
 import { BsListTask } from "react-icons/bs";
 import { IoEyeOutline, IoTrashOutline } from "react-icons/io5";
 import { GoPencil } from "react-icons/go";
-import { getCompletedTaskCount } from "./helpers";
 import Modal from "./Modal";
 import TaskForm from "./TaskForm";
+import { getCompletedTaskCount } from "./helpers";
+import { useDispatch, useSelector } from "react-redux";
+import { addTrashItem, removeTrashItem } from "./trash/trashSlice";
+import { removeTask } from "./tasks/taskSlice";
 
 function TaskType({ type, tasks }) {
   return (
@@ -52,6 +55,12 @@ function TaskContent({ task, type }) {
 }
 
 function TaskDetails({ task, type }) {
+  const dispatch = useDispatch();
+  function handleTaskDelete() {
+    dispatch(addTrashItem(task));
+    dispatch(removeTask({ taskId: task.taskId }));
+  }
+
   return (
     <div className="py-2 px-2 bg-gray-200 rounded gap-3 flex flex-col">
       <div className="flex flex-row justify-between text-gray-700">
@@ -77,7 +86,7 @@ function TaskDetails({ task, type }) {
           <span>
             <IoEyeOutline />
           </span>
-          <span>
+          <span className="cursor-pointer" onClick={handleTaskDelete}>
             <IoTrashOutline />
           </span>
           <Modal>

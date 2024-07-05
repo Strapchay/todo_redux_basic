@@ -1,5 +1,6 @@
 import { DiReact } from "react-icons/di";
 import { MdHouseSiding } from "react-icons/md";
+import { SlTrash } from "react-icons/sl";
 
 function Sidebar() {
   return (
@@ -16,6 +17,12 @@ function Sidebar() {
             <MdHouseSiding size={20} />
           </span>
           Dashboard
+        </li>
+        <li className="list-none h-9 hover:text-white text-gray-600 text-xs hover:bg-blue-700 rounded-l px-2 flex items-center justify-center cursor-pointer gap-2">
+          <span>
+            <SlTrash size={20} />
+          </span>
+          Trash Items
         </li>
         {/* <div>Tasks</div>
     <div>Calender</div>
