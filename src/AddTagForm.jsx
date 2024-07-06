@@ -40,10 +40,10 @@ function AddTagForm() {
   }
 
   return (
-    <div className="pt-4">
+    <div className="pt-4 dark:bg-gray-600">
       <div className="flex flex-col gap-4">
         <input
-          className="border rounded px-2 py-1"
+          className="border rounded px-2 py-1 bg-gray-300"
           placeholder="Tag Name"
           type="text"
           value={curTag?.tagName}
@@ -58,7 +58,7 @@ function AddTagForm() {
 
         <div className="flex items-center justify-end">
           <button
-            className="border px-4 py-1 text-white bg-gray-400"
+            className="border px-4 py-1 mb-2 rounded text-white bg-gray-400"
             onClick={handleSubmit}
           >
             {editing ? "Update Tag" : "Add Tag"}

@@ -36,7 +36,7 @@ function StyledModal({ children, refObj }) {
   return (
     <div
       ref={refObj}
-      className="origin fixed left-[50%] top-[50%] max-h-[90vh] min-h-[70vh] w-[70%] translate-x-[-50%] translate-y-[-50%] transform overflow-y-auto rounded border bg-white px-4 py-[1rem]  transition-all"
+      className="origin fixed left-[50%] top-[50%] max-h-[90vh] min-h-[70vh] w-[70%] translate-x-[-50%] translate-y-[-50%] transform overflow-y-auto rounded border bg-white px-4 py-[1rem]  transition-all dark:bg-gray-600"
     >
       {children}
     </div>

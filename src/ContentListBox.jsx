@@ -43,7 +43,7 @@ function ContentDetails({ task, type, trashId }) {
   }
 
   return (
-    <div className="py-2 px-2 bg-gray-200 rounded gap-3 flex flex-col">
+    <div className="py-2 px-2 bg-gray-200 dark:bg-gray-400 rounded gap-3 flex flex-col">
       <div className="flex flex-row justify-between text-gray-700">
         <h3 className="font-bold ">{task.title}</h3>
         <span>
@@ -52,7 +52,7 @@ function ContentDetails({ task, type, trashId }) {
       </div>
       <div className="pr-4 flex flex-col gap-2">
         <p className="text-xs text-gray-500">{task.description}</p>
-        <div className="border min-w-10 h-5 flex items-center justify-center text-gray-500 max-w-12 py-1 px-2 border-gray-400 rounded text-sm flex-row gap-1 bg-gray-100">
+        <div className="border min-w-10 h-5 flex items-center justify-center text-gray-500 max-w-12 py-1 px-2 border-gray-400 rounded text-sm flex-row gap-1 bg-gray-100 dark:bg-gray-200">
           <span>
             <BsListTask />
           </span>
@@ -103,7 +103,7 @@ function ContentTags({ task }) {
           {ellipseText(firstTwoTags[0]?.tagName)}
         </li>
       )}
-      <li className="rounded px-3 py-1 flex items-center justify-center h-full text-sm bg-white shadow-gray-400 shadow-sm text-blue-600">
+      <li className="rounded px-3 py-1 flex items-center justify-center h-full text-sm bg-white shadow-gray-400 shadow-sm text-blue-600 dark:bg-gray-300">
         {calcTimeRender(task.dueDate)}
       </li>
       {firstTwoTags?.[1]?.tagName && (

@@ -132,7 +132,7 @@ function TaskDetailBox() {
   return (
     <form className="flex flex-col rounded border px-4 py-4 gap-2" action="">
       <input
-        className="px-2 py-1 border rounded"
+        className="px-2 py-1 border rounded dark:bg-gray-300"
         type="text"
         placeholder="Title"
         value={taskDetails?.title}
@@ -151,7 +151,7 @@ function TaskDetailBox() {
         contentEditable
         role="textarea"
         ref={descriptionRef}
-        className="border rounded px-2 py-1"
+        className="border rounded px-2 py-1 dark:bg-gray-300"
         value={taskDetails?.description}
         onKeyUp={(e) =>
           setTaskDetails((details) => {
@@ -166,7 +166,7 @@ function TaskDetailBox() {
       ></div>
 
       <input
-        className="px-2 py-1 border rounded"
+        className="px-2 py-1 border rounded dark:bg-gray-300"
         type="date"
         placeholder="Set Due Date"
         value={taskDetails?.dueDate}
@@ -182,7 +182,7 @@ function TaskDetailBox() {
         }
       />
       <div
-        className="py-1 px-2 rounded h-10 w-full border flex flex-row gap-1"
+        className="py-1 px-2 rounded h-10 w-full border flex flex-row gap-1 dark:bg-gray-300"
         contentEditable={false}
       >
         {renderTags?.map((tag) => (
@@ -201,12 +201,17 @@ function TaskDetailBox() {
           </div>
         ))}
       </div>
-      <select onChange={handleTagAdd} name="tagOptions" id="tagOptions">
-        <option>-------------------</option>
+      <select
+        className="dark:bg-gray-300"
+        onChange={handleTagAdd}
+        name="tagOptions"
+        id="tagOptions"
+      >
+        <option className="dark:bg-gray-300">-------------------</option>
         {tags?.map((tag) => (
           <option
             key={tag.tagId}
-            className="flex flex-row gap-2"
+            className="flex flex-row gap-2 dark:bg-gray-300"
             value={tag.tagId}
           >
             {tag.tagName}

@@ -7,10 +7,10 @@ import { useContext } from "react";
 import { LandingContext } from "./Landing";
 
 const BASE =
-  "border rounded h-6 text-gray-600 text-xs font-bold px-1 py-1 flex items-center justify-center gap-1 cursor-pointer";
+  "border rounded h-6 text-gray-600 dark:bg-gray-300  text-xs font-bold px-1 py-1 flex items-center justify-center gap-1 cursor-pointer";
 const actionBtnStyling = {
   base: BASE,
-  active: BASE + ` bg-zinc-500 text-white`,
+  active: BASE + ` bg-zinc-500 dark:bg-gray-400 dark:text-black text-white`,
 };
 
 function Actions() {
@@ -53,7 +53,7 @@ function Actions() {
         <li className="list-none">add item</li> */}
           <li className="list-none">
             <Modal.Open opens="add-task-form">
-              <button className="flex items-center h-8 justify-center rounded bg-blue-700 text-white px-4 py-1 text-xs">
+              <button className="flex items-center h-8 justify-center rounded dark:text-blue-100 bg-blue-700 text-white px-4 py-1 text-xs">
                 + Add task
               </button>
             </Modal.Open>
@@ -63,7 +63,7 @@ function Actions() {
           </li>
           <li className="list-none">
             <Modal.Open opens="add-tag-form">
-              <button className="flex items-center h-8 justify-center rounded bg-zinc-500 text-white px-4 py-1 text-xs">
+              <button className="flex items-center h-8 justify-center rounded dark:text-blue-100 bg-zinc-500 text-white px-4 py-1 text-xs">
                 + Add tag
               </button>
             </Modal.Open>

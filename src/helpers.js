@@ -2,7 +2,7 @@ export function getCompletedTaskCount(task) {
   return task.items.reduce((acc, cur) => (cur.completed ? (acc += 1) : acc), 0);
 }
 
-export function ellipseText(text, len = 10) {
+export function ellipseText(text, len = 9) {
   if (text) {
     const value = text?.slice(0, len);
     return value + "...";
