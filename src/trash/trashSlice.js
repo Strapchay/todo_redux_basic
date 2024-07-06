@@ -1,18 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  trash: [],
+  trashs: [],
 };
 
 const trashSlice = createSlice({
   name: "trash",
   initialState,
   reducers: {
-    addTrashItem(state, action) {
-      state.trash = [...state.trash, action.payload];
+    addTrashItem: {
+      prepare(payload) {
+        return { payload: { ...payload, trashId: crypto.randomUUID() } };
+      },
+
+      reducer(state, action) {
+        state.trashs = [...state.trashs, action.payload];
+      },
     },
     removeTrashItem(state, action) {
-      state.trash = state.trash.filter(
+      state.trashs = state.trashs.filter(
         (trash) => trash.trashId !== action.payload.trashId,
       );
     },

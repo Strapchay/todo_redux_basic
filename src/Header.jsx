@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
+import { LandingContext } from "./Landing";
 
 function Header() {
+  const { searchState, setSearchState } = useContext(LandingContext);
   return (
     <div className="flex flex-row justify-between items-center w-full">
       <div className="w-32 h-8">
@@ -12,14 +15,11 @@ function Header() {
             className="h-full bg-gray-300 px-2 flex items-center justify-center focus:ring-gray-500 focus:outline-none rounded focus:ring-3 placeholder:text-gray-400 text-gray-500 pl-7"
             type="text"
             placeholder="Search tasks"
+            value={searchState}
+            onChange={(e) => setSearchState(e.target.value)}
           />
         </div>
       </div>
-      {/* <ul className="flex flex-row gap-4 w-30">
-        <li className="list-none">add item</li>
-        <li className="list-none">add item</li>
-        <li className="list-none">add item</li>
-      </ul> */}
     </div>
   );
 }

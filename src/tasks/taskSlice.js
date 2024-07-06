@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tasks: [],
+  currentIndex: 0,
 };
 
 const taskSlice = createSlice({
@@ -15,6 +16,8 @@ const taskSlice = createSlice({
         };
       },
       reducer(state, action) {
+        state.currentIndex += 1;
+        action.payload.index = state.currentIndex;
         state.tasks = [...state.tasks, action.payload];
       },
     },
@@ -22,22 +25,6 @@ const taskSlice = createSlice({
       state.tasks = state.tasks.filter(
         (task) => task.taskId !== action.payload.taskId,
       );
-    },
-    removeTaskItem(state, action) {
-      const curTaskIndex = state.tasks.findIndex(
-        (task) => task.taskId === action.payload.taskId,
-      );
-      const curTask = state.tasks[curTaskIndex];
-      curTask.items = curTask.items.filter(
-        (item) => item.itemId !== action.payload.itemId,
-      );
-      const modTasks = [...state.tasks];
-      const swapTasks = modTasks.splice(
-        curTaskIndex,
-        curTaskIndex + 1,
-        curTask,
-      );
-      state.tasks = swapTasks;
     },
     updateTask(state, action) {
       const taskIndex = state.tasks.findIndex(
@@ -47,24 +34,23 @@ const taskSlice = createSlice({
       modState.splice(taskIndex, 1, action.payload);
       state.tasks = modState;
     },
-    updateTaskItem(state, action) {
-      const curTaskIndex = state.tasks.findIndex(
-        (task) => task.taskId === action.payload.taskId,
+    restoreTaskFromTrash(state, action) {
+      const deletedTaskIndex = state.tasks.findLastIndex(
+        (task) => task.index < action.payload.index,
       );
-      const curTask = Object.assign({}, state.tasks[curTaskIndex]);
-      const curTaskItemIndex = curTask.items.findIndex(
-        (item) => item.itemId === action.payload.item.itemId,
-      );
-
-      curTask.items = curTask.items.splice(
-        curTaskItemIndex,
-        1,
-        action.payload.item,
-      );
-
-      const modTasks = [...state.tasks];
-      const swapTasks = modTasks.splice(curTaskIndex, 1, curTask);
-      state.tasks = swapTasks;
+      const modState = [...state.tasks];
+      modState.splice(deletedTaskIndex + 1, 0, action.payload);
+      state.tasks = modState;
+    },
+    removeTagFromTasks(state, action) {
+      const modState = [...state.tasks];
+      modState.forEach((task) => {
+        const taskTags = task.tags.filter(
+          (tag) => tag !== action.payload.tagId,
+        );
+        task.tags = taskTags;
+      });
+      state.tasks = modState;
     },
   },
 });
@@ -73,37 +59,8 @@ export const {
   addTask,
   removeTask,
   updateTask,
-  removeTaskItem,
-  updateTaskItem,
+  restoreTaskFromTrash,
+  removeTagFromTasks,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;
-
-// function taskReducer(state = initialTaskState, action) {
-//   switch (action.type) {
-//     case "task/addTask":
-//       return { ...state, tasks: [...state.tasks, action.payload] };
-
-//     case "task/removeTask":
-//       return {
-//         ...state,
-//         tasks: state.tasks.filter((task) => task.id !== action.payload.id),
-//       };
-
-//     case "task/updateTask": {
-//       const taskIndex = state.tasks.findIndex(
-//         (task) => task.id === action.payload.id,
-//       );
-//       const modState = [...state.tasks];
-//       const swapState = modState.splice(
-//         taskIndex,
-//         taskIndex + 1,
-//         action.payload,
-//       );
-//       return {
-//         ...state,
-//         tasks: swapState,
-//       };
-//     }
-//   }
-// }

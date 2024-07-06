@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTag, removeTag, updateTag } from "./tasks/tagSlice";
 import { IoEyeOutline, IoTrashOutline } from "react-icons/io5";
 import { GoPencil } from "react-icons/go";
+import { removeTagFromTasks } from "./tasks/taskSlice";
 
 const emptyTagState = {
   tagName: "",
@@ -80,7 +81,10 @@ function AddTagForm() {
               <div className="flex flex-row gap-2">
                 <span
                   className="cursor-pointer"
-                  onClick={(_) => dispatch(removeTag({ tagId: tag.tagId }))}
+                  onClick={(_) => {
+                    dispatch(removeTag({ tagId: tag.tagId }));
+                    dispatch(removeTagFromTasks({ tagId: tag.tagId }));
+                  }}
                 >
                   <IoTrashOutline />
                 </span>

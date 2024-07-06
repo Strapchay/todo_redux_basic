@@ -3,23 +3,48 @@ import { LuListFilter } from "react-icons/lu";
 import Modal from "./Modal";
 import AddTagForm from "./AddTagForm";
 import TaskForm from "./TaskForm";
+import { useContext } from "react";
+import { LandingContext } from "./Landing";
+
+const BASE =
+  "border rounded h-6 text-gray-600 text-xs font-bold px-1 py-1 flex items-center justify-center gap-1 cursor-pointer";
+const actionBtnStyling = {
+  base: BASE,
+  active: BASE + ` bg-zinc-500 text-white`,
+};
 
 function Actions() {
+  const { sortState, setSortState } = useContext(LandingContext);
+
+  function handleSort() {
+    if (!sortState) {
+      setSortState(true);
+    } else setSortState(false);
+  }
+
   return (
     <div className="flex flex-row justify-between items-center w-full">
       <div className="flex flex-row gap-4">
-        <button className="border rounded h-6 text-gray-600 text-xs font-bold px-1 py-1 flex items-center justify-center gap-1">
+        <button
+          className={
+            sortState ? actionBtnStyling.active : actionBtnStyling.base
+          }
+          onClick={handleSort}
+        >
           <span>
             <BiSortAlt2 fontSize={"15px"} />
           </span>
           Sort
         </button>
-        <button className="border rounded h-6 text-gray-600 text-xs font-bold px-2 py-1 flex items-center justify-center gap-1">
+        {/* <button
+          className={filter ? actionBtnStyling.active : actionBtnStyling.base}
+          onClick={handleFilter}
+        >
           <span>
             <LuListFilter fontSize={"15px"} />
           </span>
           Filter
-        </button>
+        </button> */}
       </div>
 
       <Modal>

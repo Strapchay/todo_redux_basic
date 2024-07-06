@@ -2,9 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Error from "./Error";
 import BasePage from "./BasePage";
-import Landing from "./Landing";
 import TrashItems from "./TrashItems";
 import PageNotFound from "./PageNotFound";
+import Landing from "./Landing";
 
 const router = createBrowserRouter([
   {

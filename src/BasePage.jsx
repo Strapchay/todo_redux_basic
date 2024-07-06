@@ -5,7 +5,7 @@ function BasePage() {
   return (
     <main className="grid grid-cols-[9rem_1fr] h-[100vh]">
       <Sidebar />
-      <div className="flex flex-col gap-10 h-[100vh] w-full py-6 px-8">
+      <div className="flex flex-col gap-10 h-[100vh] w-full py-6 px-8 overflow-y-auto max-sm:px-4">
         <Outlet />
       </div>
     </main>

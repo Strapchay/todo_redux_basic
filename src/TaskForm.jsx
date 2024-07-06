@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, removeTaskItem, updateTask } from "./tasks/taskSlice";
+import { addTask, updateTask } from "./tasks/taskSlice";
 import { IoTrashOutline } from "react-icons/io5";
 import { GoPencil } from "react-icons/go";
 import { HiXMark } from "react-icons/hi2";
@@ -35,8 +35,7 @@ function TaskFormBox({ children, onCloseModal, taskId }) {
 
   const task = useSelector((state) =>
     state.tasks.tasks.find((task) => task.taskId === taskId),
-  ); //taskId && tasks.find((task) => task.taskId === taskId);
-  console.log("the task value selc", task);
+  );
   const [taskDetails, setTaskDetails] = useState(
     task ? task : initialTaskDetails,
   );
