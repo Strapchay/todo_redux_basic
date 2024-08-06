@@ -14,7 +14,7 @@ function Sidebar() {
       </div>
       <ul className="flex flex-col gap-4">
         <li className="list-none h-9 hover:text-white text-gray-600 dark:text-blue-100 text-xs hover:bg-blue-700 rounded-l px-2 flex items-center justify-center cursor-pointer gap-2">
-          <NavLink className="flex flex-row gap-2" to={"/dashboard"}>
+          <NavLink className="flex flex-row gap-2" to={"/"}>
             <span>
               <MdHouseSiding size={20} />
             </span>

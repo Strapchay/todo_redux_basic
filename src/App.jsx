@@ -8,10 +8,11 @@ import Landing from "./Landing";
 
 const router = createBrowserRouter([
   {
+    path: "/",
     element: <BasePage />,
     errorElement: <Error />,
     children: [
-      { path: "/dashboard", element: <Landing />, index: true },
+      { element: <Landing />, index: true },
       { path: "/trashItems", element: <TrashItems /> },
     ],
   },
